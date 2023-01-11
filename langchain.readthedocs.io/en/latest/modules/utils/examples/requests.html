@@ -1,0 +1,1248 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Requests &#8212; 🦜🔗 LangChain 0.0.60</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="/_/static/css/badge_only.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script async="async" src="/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="canonical" href="https://langchain.readthedocs.io/en/latest/modules/utils/examples/requests.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SerpAPI" href="serpapi.html" />
+    <link rel="prev" title="Python REPL" href="python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2023-01-11T15:11:46Z", "builder": "sphinx", "canonical_url": null, "commit": "7b6e7f6e", "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "modules/utils/examples/requests", "programming_language": "words", "project": "langchain", "proxied_api_host": "/_", "source_suffix": ".ipynb", "subprojects": {}, "theme": "sphinx_book_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">🦜🔗 LangChain 0.0.60</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../getting_started/getting_started.html">
+   Quickstart Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modules
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prompts.html">
+   Prompt Templates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prompts/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prompts/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../prompts/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/custom_prompt_template.html">
+       Create a custom prompt template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/custom_example_selector.html">
+       Create a custom example selector
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/few_shot_examples.html">
+       Provide few shot examples to a prompt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/prompt_serialization.html">
+       Prompt Serialization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/example_selectors.html">
+       Example Selectors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/prompts.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../llms.html">
+   LLMs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../llms/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../llms/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../llms/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../llms/generic_how_to.html">
+       Generic Functionality
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/examples/custom_llm.html">
+         Custom LLM
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/examples/llm_caching.html">
+         LLM Caching
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/examples/llm_serialization.html">
+         LLM Serialization
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../llms/integrations.html">
+       Integrations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/integrations/azure_openai_example.html">
+         Azure OpenAI LLM Example
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/integrations/huggingface_hub.html">
+         HuggingFace Hub
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/integrations/manifest.html">
+         Manifest
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/llms.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../utils.html">
+   Utils
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../how_to_guides.html">
+     How-To Guides
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="../generic_how_to.html">
+       Generic Utilities
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4">
+        <a class="reference internal" href="bash.html">
+         Bash
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="google_search.html">
+         Google Search
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="python.html">
+         Python REPL
+        </a>
+       </li>
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         Requests
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="serpapi.html">
+         SerpAPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="wolfram_alpha.html">
+         Wolfram Alpha
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../combine_docs_how_to.html">
+       Utilities for working with Documents
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../combine_docs_examples/embeddings.html">
+         Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../combine_docs_examples/hyde.html">
+         Hypothetical Document Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../combine_docs_examples/textsplitter.html">
+         Text Splitter
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../combine_docs_examples/vectorstores.html">
+         VectorStores
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/utils.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../chains.html">
+   Chains
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../chains/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../chains/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../chains/generic_how_to.html">
+       Generic Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/generic/llm_chain.html">
+         LLM Chain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/generic/sequential_chains.html">
+         Sequential Chains
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/generic/transformation.html">
+         Transformation Chain
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../chains/combine_docs_how_to.html">
+       CombineDocuments Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/combine_docs_examples/qa_with_sources.html">
+         Question Answering with Sources
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/combine_docs_examples/question_answering.html">
+         Question Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/combine_docs_examples/summarize.html">
+         Summarization
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/combine_docs_examples/vector_db_qa.html">
+         Vector DB Question/Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/combine_docs_examples/vector_db_qa_with_sources.html">
+         VectorDB Question Ansering with Sources
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../chains/utility_how_to.html">
+       Utility Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/examples/llm_bash.html">
+         BashChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/examples/llm_checker.html">
+         LLMCheckerChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/examples/llm_math.html">
+         LLM Math
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/examples/llm_requests.html">
+         LLMRequestsChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/examples/moderation.html">
+         Moderation
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/examples/pal.html">
+         PAL
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../chains/examples/sqlite.html">
+         SQLite example
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../chains/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/chains.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../agents.html">
+   Agents
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../agents/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../agents/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../agents/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/custom_agent.html">
+       Custom Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/custom_tools.html">
+       Defining Custom Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/intermediate_steps.html">
+       Intermediate Steps
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/max_iterations.html">
+       Max Iterations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/multi_input_tool.html">
+       Multi Input Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/search_tools.html">
+       Search Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/implementations/mrkl.html">
+       MRKL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/implementations/react.html">
+       ReAct
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/implementations/self_ask_with_search.html">
+       Self Ask With Search
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/agents.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../memory.html">
+   Memory
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../memory/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../memory/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../memory/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+    <label for="toctree-checkbox-21">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/adding_memory.html">
+       Adding Memory To an LLMChain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/adding_memory_chain_multiple_inputs.html">
+       Adding Memory to a Multi-Input Chain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/agent_with_memory.html">
+       Adding Memory to an Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/chatgpt_clone.html">
+       ChatGPT Clone
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/conversational_agent.html">
+       Conversation Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/conversational_customization.html">
+       Conversational Memory Customization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/custom_memory.html">
+       Custom Memory
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/multiple_memory.html">
+       Multiple Memory
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Use Cases
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/agents.html">
+   Agents
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/chatbots.html">
+   Chatbots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/generate_examples.html">
+   Generate Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/combine_docs.html">
+   Data Augmented Generation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/question_answering.html">
+   Question Answering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/summarization.html">
+   Summarization
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../use_cases/evaluation.html">
+   Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/data_augmented_question_answering.html">
+     Data Augmented Question Answering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/huggingface_datasets.html">
+     Using HuggingFace Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/question_answering.html">
+     Question Answering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/model_laboratory.html">
+   Model Comparison
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../reference/installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../reference/integrations.html">
+   Integrations
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../reference.html">
+   API References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/prompts.html">
+     Prompts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+    <label for="toctree-checkbox-24">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/utils.html">
+     Utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+    <label for="toctree-checkbox-25">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/chains.html">
+     Chains
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/agents.html">
+     Agents
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ecosystem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../ecosystem.html">
+   LangChain Ecosystem
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/ai21.html">
+     AI21 Labs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/cohere.html">
+     Cohere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/google_search.html">
+     Google Search Wrapper
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/hazy_research.html">
+     Hazy Research
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/huggingface.html">
+     Hugging Face
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/nlpcloud.html">
+     NLPCloud
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/openai.html">
+     OpenAI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/pinecone.html">
+     Pinecone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/serpapi.html">
+     SerpAPI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/weaviate.html">
+     Weaviate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/wolfram_alpha.html">
+     Wolfram Alpha Wrapper
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Additional Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../gallery.html">
+   LangChain Gallery
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../deployments.html">
+   Deployments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/hwchase17/langchain"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/modules/utils/examples/requests.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Requests</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="requests">
+<h1>Requests<a class="headerlink" href="#requests" title="Permalink to this headline">#</a></h1>
+<p>The web contains a lot of information that LLMs do not have access to. In order to easily let LLMs interact with that information, we provide a wrapper around the Python Requests module that takes in a URL and fetches data from that URL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.utilities</span> <span class="kn">import</span> <span class="n">RequestsWrapper</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests</span> <span class="o">=</span> <span class="n">RequestsWrapper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">requests</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;https://www.google.com&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;!doctype html&gt;&lt;html itemscope=&quot;&quot; itemtype=&quot;http://schema.org/WebPage&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta content=&quot;Search the world\&#39;s information, including webpages, images, videos and more. Google has many special features to help you find exactly what you\&#39;re looking for.&quot; name=&quot;description&quot;&gt;&lt;meta content=&quot;noodp&quot; name=&quot;robots&quot;&gt;&lt;meta content=&quot;text/html; charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;meta content=&quot;/logos/doodles/2022/seasonal-holidays-2022-6753651837109831.4-law.gif&quot; itemprop=&quot;image&quot;&gt;&lt;meta content=&quot;Seasonal Holidays 2022&quot; property=&quot;twitter:title&quot;&gt;&lt;meta content=&quot;&quot; property=&quot;twitter:description&quot;&gt;&lt;meta content=&quot;summary_large_image&quot; property=&quot;twitter:card&quot;&gt;&lt;meta content=&quot;@GoogleDoodles&quot; property=&quot;twitter:site&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2022/seasonal-holidays-2022-6753651837109831.2-2xa.gif&quot; property=&quot;twitter:image&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2022/seasonal-holidays-2022-6753651837109831.2-2xa.gif&quot; property=&quot;og:image&quot;&gt;&lt;meta content=&quot;1150&quot; property=&quot;og:image:width&quot;&gt;&lt;meta content=&quot;460&quot; property=&quot;og:image:height&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2022/seasonal-holidays-2022-6753651837109831.2-2xa.gif&quot; property=&quot;og:url&quot;&gt;&lt;meta content=&quot;video.other&quot; property=&quot;og:type&quot;&gt;&lt;title&gt;Google&lt;/title&gt;&lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){window.google={kEI:\&#39;um-uY4OhDtLMytMPwYep6A8\&#39;,kEXPI:\&#39;0,1359409,1709,4349,207,4804,2316,383,246,5,1129120,1197786,615,380089,16109,19404,9286,22430,1362,12313,17586,4998,13227,3848,10622,22741,6674,1279,2742,149,1103,840,1983,4314,108,3406,606,2023,2297,6345,8325,3227,2845,7,29074,4696,17175,432,3,1590,1,5445,148,11323,2642,4,1538,2304,7039,22023,5708,7357,13658,2980,16808,1435,5815,2542,4094,17,4035,3,3541,1,42154,2,14022,2373,342,23024,5679,1021,2380,28742,4568,6255,23420,1253,5835,12141,2827,4332,2204,5280,445,2,2,1,23827,10960,6680,701,2,3,15965,873,9625,10010,5,1922,5784,3995,12415,6715,2261,9931,4832,26504,106,17512,2518,14,82,3890,751,11873,3013,679,109,830,683,899,880,3851,1125,3785,5205,4138,1763,1742,813,1514,578,1772,1497,2,563,931,60,970,31,1093,351,90,399,96,426,1034,42,291,2260,409,723,925,836,575,20,3,260,607,1344,917,424,1304,1197,2311,4,6,845,1,856,823,207,795,1443,26,378,71,3,538,515,84,551,157,327,331,270,6,261,764,184,394,87,4,994,1254,5,342,459,718,130,108,68,394,219,84,129,109,23,91,11,115,328,3,182,1,1985,337,3,500,62,3644,555,625,575,102,38,425,36,12,1477,1422,495,128,427,621,311,267,103,191,219,2145,337,785,578,72,22,4,191,40,2,355,199,353,1420,1072,712,5277284,435,5994420,2804424,3311,141,795,19735,1,1,346,3579,66,5,23946834,553,2772342,1269248,1964,1007,15665,3406,5595,11,3834,1924,5046,228\&#39;,kBL:\&#39;Dl4b\&#39;};google.sn=\&#39;webhp\&#39;;google.kHL=\&#39;en\&#39;;})();(function(){\nvar f=this||self;var h,k=[];function l(a){for(var b;a&amp;&amp;(!a.getAttribute||!(b=a.getAttribute(&quot;eid&quot;)));)a=a.parentNode;return b||h}function m(a){for(var b=null;a&amp;&amp;(!a.getAttribute||!(b=a.getAttribute(&quot;leid&quot;)));)a=a.parentNode;return b}\nfunction n(a,b,c,d,g){var e=&quot;&quot;;c||-1!==b.search(&quot;&amp;ei=&quot;)||(e=&quot;&amp;ei=&quot;+l(d),-1===b.search(&quot;&amp;lei=&quot;)&amp;&amp;(d=m(d))&amp;&amp;(e+=&quot;&amp;lei=&quot;+d));d=&quot;&quot;;!c&amp;&amp;f._cshid&amp;&amp;-1===b.search(&quot;&amp;cshid=&quot;)&amp;&amp;&quot;slh&quot;!==a&amp;&amp;(d=&quot;&amp;cshid=&quot;+f._cshid);c=c||&quot;/&quot;+(g||&quot;gen_204&quot;)+&quot;?atyp=i&amp;ct=&quot;+a+&quot;&amp;cad=&quot;+b+e+&quot;&amp;zx=&quot;+Date.now()+d;/^http:/i.test(c)&amp;&amp;&quot;https:&quot;===window.location.protocol&amp;&amp;(google.ml&amp;&amp;google.ml(Error(&quot;a&quot;),!1,{src:c,glmm:1}),c=&quot;&quot;);return c};h=google.kEI;google.getEI=l;google.getLEI=m;google.ml=function(){return null};google.log=function(a,b,c,d,g){if(c=n(a,b,c,d,g)){a=new Image;var e=k.length;k[e]=a;a.onerror=a.onload=a.onabort=function(){delete k[e]};a.src=c}};google.logUrl=n;}).call(this);(function(){google.y={};google.sy=[];google.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1};google.sx=function(a){google.sy.push(a)};google.lm=[];google.plm=function(a){google.lm.push.apply(google.lm,a)};google.lq=[];google.load=function(a,b,c){google.lq.push([[a],b,c])};google.loadAll=function(a,b){google.lq.push([a,b])};google.bx=!1;google.lx=function(){};}).call(this);google.f={};(function(){\ndocument.documentElement.addEventListener(&quot;submit&quot;,function(b){var a;if(a=b.target){var c=a.getAttribute(&quot;data-submitfalse&quot;);a=&quot;1&quot;===c||&quot;q&quot;===c&amp;&amp;!a.elements.q.value?!0:!1}else a=!1;a&amp;&amp;(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener(&quot;click&quot;,function(b){var a;a:{for(a=b.target;a&amp;&amp;a!==document.documentElement;a=a.parentElement)if(&quot;A&quot;===a.tagName){a=&quot;1&quot;===a.getAttribute(&quot;data-nohref&quot;);break a}a=!1}a&amp;&amp;b.preventDefault()},!0);}).call(this);&lt;/script&gt;&lt;style&gt;#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}\n&lt;/style&gt;&lt;style&gt;body,td,a,p,.h{font-family:arial,sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1558d6}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px arial,sans-serif}.gsfs{font:17px arial,sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#000}a{color:#4b11a8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1558d6}a:visited{color:#4b11a8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;border:none;color:#000;cursor:pointer;height:30px;margin:0;outline:0;font:15px arial,sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}&lt;/style&gt;&lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){window.google.erd={jsr:1,bv:1702,de:true};\nvar h=this||self;var k,l=null!=(k=h.mei)?k:1,n,p=null!=(n=h.sdo)?n:!0,q=0,r,t=google.erd,v=t.jsr;google.ml=function(a,b,d,m,e){e=void 0===e?2:e;b&amp;&amp;(r=a&amp;&amp;a.message);if(google.dl)return google.dl(a,e,d),null;if(0&gt;v){window.console&amp;&amp;console.error(a,d);if(-2===v)throw a;b=!1}else b=!a||!a.message||&quot;Error loading script&quot;===a.message||q&gt;=l&amp;&amp;!m?!1:!0;if(!b)return null;q++;d=d||{};b=encodeURIComponent;var c=&quot;/gen_204?atyp=i&amp;ei=&quot;+b(google.kEI);google.kEXPI&amp;&amp;(c+=&quot;&amp;jexpid=&quot;+b(google.kEXPI));c+=&quot;&amp;srcpg=&quot;+b(google.sn)+&quot;&amp;jsr=&quot;+b(t.jsr)+&quot;&amp;bver=&quot;+b(t.bv);var f=a.lineNumber;void 0!==f&amp;&amp;(c+=&quot;&amp;line=&quot;+f);var g=\na.fileName;g&amp;&amp;(0&lt;g.indexOf(&quot;-extension:/&quot;)&amp;&amp;(e=3),c+=&quot;&amp;script=&quot;+b(g),f&amp;&amp;g===window.location.href&amp;&amp;(f=document.documentElement.outerHTML.split(&quot;\\n&quot;)[f],c+=&quot;&amp;cad=&quot;+b(f?f.substring(0,300):&quot;No script found.&quot;)));c+=&quot;&amp;jsel=&quot;+e;for(var u in d)c+=&quot;&amp;&quot;,c+=b(u),c+=&quot;=&quot;,c+=b(d[u]);c=c+&quot;&amp;emsg=&quot;+b(a.name+&quot;: &quot;+a.message);c=c+&quot;&amp;jsst=&quot;+b(a.stack||&quot;N/A&quot;);12288&lt;=c.length&amp;&amp;(c=c.substr(0,12288));a=c;m||google.log(0,&quot;&quot;,a);return a};window.onerror=function(a,b,d,m,e){r!==a&amp;&amp;(a=e instanceof Error?e:Error(a),void 0===d||&quot;lineNumber&quot;in a||(a.lineNumber=d),void 0===b||&quot;fileName&quot;in a||(a.fileName=b),google.ml(a,!1,void 0,!1,&quot;SyntaxError&quot;===a.name||&quot;SyntaxError&quot;===a.message.substring(0,11)||-1!==a.message.indexOf(&quot;Script error&quot;)?3:0));r=null;p&amp;&amp;q&gt;=l&amp;&amp;(window.onerror=null)};})();&lt;/script&gt;&lt;/head&gt;&lt;body bgcolor=&quot;#fff&quot;&gt;&lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){var src=\&#39;/images/nav_logo229.png\&#39;;var iesg=false;document.body.onload = function(){window.n &amp;&amp; window.n();if (document.images){new Image().src=src;}\nif (!iesg){document.f&amp;&amp;document.f.q.focus();document.gbqf&amp;&amp;document.gbqf.q.focus();}\n}\n})();&lt;/script&gt;&lt;div id=&quot;mngb&quot;&gt;&lt;div id=gbar&gt;&lt;nobr&gt;&lt;b class=gb1&gt;Search&lt;/b&gt; &lt;a class=gb1 href=&quot;https://www.google.com/imghp?hl=en&amp;tab=wi&quot;&gt;Images&lt;/a&gt; &lt;a class=gb1 href=&quot;https://maps.google.com/maps?hl=en&amp;tab=wl&quot;&gt;Maps&lt;/a&gt; &lt;a class=gb1 href=&quot;https://play.google.com/?hl=en&amp;tab=w8&quot;&gt;Play&lt;/a&gt; &lt;a class=gb1 href=&quot;https://www.youtube.com/?tab=w1&quot;&gt;YouTube&lt;/a&gt; &lt;a class=gb1 href=&quot;https://news.google.com/?tab=wn&quot;&gt;News&lt;/a&gt; &lt;a class=gb1 href=&quot;https://mail.google.com/mail/?tab=wm&quot;&gt;Gmail&lt;/a&gt; &lt;a class=gb1 href=&quot;https://drive.google.com/?tab=wo&quot;&gt;Drive&lt;/a&gt; &lt;a class=gb1 style=&quot;text-decoration:none&quot; href=&quot;https://www.google.com/intl/en/about/products?tab=wh&quot;&gt;&lt;u&gt;More&lt;/u&gt; &amp;raquo;&lt;/a&gt;&lt;/nobr&gt;&lt;/div&gt;&lt;div id=guser width=100%&gt;&lt;nobr&gt;&lt;span id=gbn class=gbi&gt;&lt;/span&gt;&lt;span id=gbf class=gbf&gt;&lt;/span&gt;&lt;span id=gbe&gt;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/history/optout?hl=en&quot; class=gb4&gt;Web History&lt;/a&gt; | &lt;a  href=&quot;/preferences?hl=en&quot; class=gb4&gt;Settings&lt;/a&gt; | &lt;a target=_top id=gb_70 href=&quot;https://accounts.google.com/ServiceLogin?hl=en&amp;passive=true&amp;continue=https://www.google.com/&amp;ec=GAZAAQ&quot; class=gb4&gt;Sign in&lt;/a&gt;&lt;/nobr&gt;&lt;/div&gt;&lt;div class=gbh style=left:0&gt;&lt;/div&gt;&lt;div class=gbh style=right:0&gt;&lt;/div&gt;&lt;/div&gt;&lt;center&gt;&lt;br clear=&quot;all&quot; id=&quot;lgpd&quot;&gt;&lt;div id=&quot;lga&quot;&gt;&lt;img alt=&quot;Seasonal Holidays 2022&quot; border=&quot;0&quot; height=&quot;200&quot; src=&quot;/logos/doodles/2022/seasonal-holidays-2022-6753651837109831.4-law.gif&quot; title=&quot;Seasonal Holidays 2022&quot; width=&quot;500&quot; id=&quot;hplogo&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;form action=&quot;/search&quot; name=&quot;f&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td width=&quot;25%&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;td align=&quot;center&quot; nowrap=&quot;&quot;&gt;&lt;input name=&quot;ie&quot; value=&quot;ISO-8859-1&quot; type=&quot;hidden&quot;&gt;&lt;input value=&quot;en&quot; name=&quot;hl&quot; type=&quot;hidden&quot;&gt;&lt;input name=&quot;source&quot; type=&quot;hidden&quot; value=&quot;hp&quot;&gt;&lt;input name=&quot;biw&quot; type=&quot;hidden&quot;&gt;&lt;input name=&quot;bih&quot; type=&quot;hidden&quot;&gt;&lt;div class=&quot;ds&quot; style=&quot;height:32px;margin:4px 0&quot;&gt;&lt;input class=&quot;lst&quot; style=&quot;margin:0;padding:5px 8px 0 6px;vertical-align:top;color:#000&quot; autocomplete=&quot;off&quot; value=&quot;&quot; title=&quot;Google Search&quot; maxlength=&quot;2048&quot; name=&quot;q&quot; size=&quot;57&quot;&gt;&lt;/div&gt;&lt;br style=&quot;line-height:0&quot;&gt;&lt;span class=&quot;ds&quot;&gt;&lt;span class=&quot;lsbb&quot;&gt;&lt;input class=&quot;lsb&quot; value=&quot;Google Search&quot; name=&quot;btnG&quot; type=&quot;submit&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;ds&quot;&gt;&lt;span class=&quot;lsbb&quot;&gt;&lt;input class=&quot;lsb&quot; id=&quot;tsuid_1&quot; value=&quot;I\&#39;m Feeling Lucky&quot; name=&quot;btnI&quot; type=&quot;submit&quot;&gt;&lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){var id=\&#39;tsuid_1\&#39;;document.getElementById(id).onclick = function(){if (this.form.q.value){this.checked = 1;if (this.form.iflsig)this.form.iflsig.disabled = false;}\nelse top.location=\&#39;/doodles/\&#39;;};})();&lt;/script&gt;&lt;input value=&quot;AJiK0e8AAAAAY659ykEC9LDqDgzMxhK062G6DJs1brzV&quot; name=&quot;iflsig&quot; type=&quot;hidden&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;fl sblc&quot; align=&quot;left&quot; nowrap=&quot;&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;/advanced_search?hl=en&amp;amp;authuser=0&quot;&gt;Advanced search&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;input id=&quot;gbv&quot; name=&quot;gbv&quot; type=&quot;hidden&quot; value=&quot;1&quot;&gt;&lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){var a,b=&quot;1&quot;;if(document&amp;&amp;document.getElementById)if(&quot;undefined&quot;!=typeof XMLHttpRequest)b=&quot;2&quot;;else if(&quot;undefined&quot;!=typeof ActiveXObject){var c,d,e=[&quot;MSXML2.XMLHTTP.6.0&quot;,&quot;MSXML2.XMLHTTP.3.0&quot;,&quot;MSXML2.XMLHTTP&quot;,&quot;Microsoft.XMLHTTP&quot;];for(c=0;d=e[c++];)try{new ActiveXObject(d),b=&quot;2&quot;}catch(h){}}a=b;if(&quot;2&quot;==a&amp;&amp;-1==location.search.indexOf(&quot;&amp;gbv=2&quot;)){var f=google.gbvu,g=document.getElementById(&quot;gbv&quot;);g&amp;&amp;(g.value=a);f&amp;&amp;window.setTimeout(function(){location.href=f},0)};}).call(this);&lt;/script&gt;&lt;/form&gt;&lt;div id=&quot;gac_scont&quot;&gt;&lt;/div&gt;&lt;div style=&quot;font-size:83%;min-height:3.5em&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;span id=&quot;footer&quot;&gt;&lt;div style=&quot;font-size:10pt&quot;&gt;&lt;div style=&quot;margin:19px auto;text-align:center&quot; id=&quot;WqQANb&quot;&gt;&lt;a href=&quot;/intl/en/ads/&quot;&gt;Advertising\xa0Programs&lt;/a&gt;&lt;a href=&quot;/services/&quot;&gt;Business Solutions&lt;/a&gt;&lt;a href=&quot;/intl/en/about.html&quot;&gt;About Google&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style=&quot;font-size:8pt;color:#70757a&quot;&gt;&amp;copy; 2022 - &lt;a href=&quot;/intl/en/policies/privacy/&quot;&gt;Privacy&lt;/a&gt; - &lt;a href=&quot;/intl/en/policies/terms/&quot;&gt;Terms&lt;/a&gt;&lt;/p&gt;&lt;/span&gt;&lt;/center&gt;&lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){window.google.cdo={height:757,width:1440};(function(){var a=window.innerWidth,b=window.innerHeight;if(!a||!b){var c=window.document,d=&quot;CSS1Compat&quot;==c.compatMode?c.documentElement:c.body;a=d.clientWidth;b=d.clientHeight}a&amp;&amp;b&amp;&amp;(a!=google.cdo.width||b!=google.cdo.height)&amp;&amp;google.log(&quot;&quot;,&quot;&quot;,&quot;/client_204?&amp;atyp=i&amp;biw=&quot;+a+&quot;&amp;bih=&quot;+b+&quot;&amp;ei=&quot;+google.kEI);}).call(this);})();&lt;/script&gt; &lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){google.xjs={ck:\&#39;xjs.hp.p8DkCBvnKaU.L.X.O\&#39;,cs:\&#39;ACT90oEuqRwZ040I9nEMS4IYPnzYYjWa8A\&#39;,excm:[]};})();&lt;/script&gt;  &lt;script nonce=&quot;aq19wV2T4C1ihTXRxVhtqg&quot;&gt;(function(){var u=\&#39;/xjs/_/js/k\\x3dxjs.hp.en.7AA-NzBVWyE.O/am\\x3dAADoBABQAGAB/d\\x3d1/ed\\x3d1/rs\\x3dACT90oFVO7j3BrFQavFg7OxlpNPTe6mLsA/m\\x3dsb_he,d\&#39;;var amd=0;\nvar d=this||self,e=function(a){return a};var g;var l=function(a,b){this.g=b===h?a:&quot;&quot;};l.prototype.toString=function(){return this.g+&quot;&quot;};var h={};\nfunction m(){var a=u;google.lx=function(){p(a);google.lx=function(){}};google.bx||google.lx()}\nfunction p(a){google.timers&amp;&amp;google.timers.load&amp;&amp;google.tick&amp;&amp;google.tick(&quot;load&quot;,&quot;xjsls&quot;);var b=document;var c=&quot;SCRIPT&quot;;&quot;application/xhtml+xml&quot;===b.contentType&amp;&amp;(c=c.toLowerCase());c=b.createElement(c);if(void 0===g){b=null;var k=d.trustedTypes;if(k&amp;&amp;k.createPolicy){try{b=k.createPolicy(&quot;goog#html&quot;,{createHTML:e,createScript:e,createScriptURL:e})}catch(q){d.console&amp;&amp;d.console.error(q.message)}g=b}else g=b}a=(b=g)?b.createScriptURL(a):a;a=new l(a,h);c.src=a instanceof l&amp;&amp;a.constructor===l?a.g:&quot;type_error:TrustedResourceUrl&quot;;var f,n;(f=(a=null==(n=(f=(c.ownerDocument&amp;&amp;c.ownerDocument.defaultView||window).document).querySelector)?void 0:n.call(f,&quot;script[nonce]&quot;))?a.nonce||a.getAttribute(&quot;nonce&quot;)||&quot;&quot;:&quot;&quot;)&amp;&amp;c.setAttribute(&quot;nonce&quot;,f);document.body.appendChild(c);google.psa=!0};google.xjsu=u;setTimeout(function(){0&lt;amd?google.caft(function(){return m()},amd):m()},0);})();function _DumpException(e){throw e;}\nfunction _F_installCss(c){}\n(function(){google.jl={blt:\&#39;none\&#39;,chnk:0,dw:false,dwu:true,emtn:0,end:0,ico:false,ikb:0,ine:false,injs:\&#39;none\&#39;,injt:0,injth:0,injv2:false,lls:\&#39;default\&#39;,pdt:0,rep:0,snet:true,strt:0,ubm:false,uwp:true};})();(function(){var pmc=\&#39;{\\x22d\\x22:{},\\x22sb_he\\x22:{\\x22agen\\x22:true,\\x22cgen\\x22:true,\\x22client\\x22:\\x22heirloom-hp\\x22,\\x22dh\\x22:true,\\x22ds\\x22:\\x22\\x22,\\x22fl\\x22:true,\\x22host\\x22:\\x22google.com\\x22,\\x22jsonp\\x22:true,\\x22msgs\\x22:{\\x22cibl\\x22:\\x22Clear Search\\x22,\\x22dym\\x22:\\x22Did you mean:\\x22,\\x22lcky\\x22:\\x22I\\\\u0026#39;m Feeling Lucky\\x22,\\x22lml\\x22:\\x22Learn more\\x22,\\x22psrc\\x22:\\x22This search was removed from your \\\\u003Ca href\\x3d\\\\\\x22/history\\\\\\x22\\\\u003EWeb History\\\\u003C/a\\\\u003E\\x22,\\x22psrl\\x22:\\x22Remove\\x22,\\x22sbit\\x22:\\x22Search by image\\x22,\\x22srch\\x22:\\x22Google Search\\x22},\\x22ovr\\x22:{},\\x22pq\\x22:\\x22\\x22,\\x22rfs\\x22:[],\\x22sbas\\x22:\\x220 3px 8px 0 rgba(0,0,0,0.2),0 0 0 1px rgba(0,0,0,0.08)\\x22,\\x22stok\\x22:\\x22dU4AEA3NNxaGlQbnd6E9XvekumY\\x22}}\&#39;;google.pmc=JSON.parse(pmc);})();&lt;/script&gt;        &lt;/body&gt;&lt;/html&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="python.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Python REPL</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="serpapi.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SerpAPI</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Harrison Chase<br/>
+  
+      &copy; Copyright 2022, Harrison Chase.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

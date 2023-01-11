@@ -1,0 +1,1485 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>langchain.llms.openai &#8212; 🦜🔗 LangChain 0.0.60</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="/_/static/css/badge_only.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script async="async" src="/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="canonical" href="https://langchain.readthedocs.io/en/latest/_modules/langchain/llms/openai.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2023-01-11T15:11:55Z", "builder": "sphinx", "canonical_url": null, "commit": "7b6e7f6e", "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "_modules/langchain/llms/openai", "programming_language": "words", "project": "langchain", "proxied_api_host": "/_", "source_suffix": ".ipynb", "subprojects": {}, "theme": "sphinx_book_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">🦜🔗 LangChain 0.0.60</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../getting_started/getting_started.html">
+   Quickstart Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modules
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules/prompts.html">
+   Prompt Templates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/prompts/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/prompts/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../modules/prompts/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/prompts/examples/custom_prompt_template.html">
+       Create a custom prompt template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/prompts/examples/custom_example_selector.html">
+       Create a custom example selector
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/prompts/examples/few_shot_examples.html">
+       Provide few shot examples to a prompt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/prompts/examples/prompt_serialization.html">
+       Prompt Serialization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/prompts/examples/example_selectors.html">
+       Example Selectors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/prompts.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules/llms.html">
+   LLMs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/llms/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/llms/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../modules/llms/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../modules/llms/generic_how_to.html">
+       Generic Functionality
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/llms/examples/custom_llm.html">
+         Custom LLM
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/llms/examples/llm_caching.html">
+         LLM Caching
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/llms/examples/llm_serialization.html">
+         LLM Serialization
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../modules/llms/integrations.html">
+       Integrations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/llms/integrations/azure_openai_example.html">
+         Azure OpenAI LLM Example
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/llms/integrations/huggingface_hub.html">
+         HuggingFace Hub
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/llms/integrations/manifest.html">
+         Manifest
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/llms.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules/utils.html">
+   Utils
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/utils/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../modules/utils/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../modules/utils/generic_how_to.html">
+       Generic Utilities
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/examples/bash.html">
+         Bash
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/examples/google_search.html">
+         Google Search
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/examples/python.html">
+         Python REPL
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/examples/requests.html">
+         Requests
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/examples/serpapi.html">
+         SerpAPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/examples/wolfram_alpha.html">
+         Wolfram Alpha
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../modules/utils/combine_docs_how_to.html">
+       Utilities for working with Documents
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/combine_docs_examples/embeddings.html">
+         Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/combine_docs_examples/hyde.html">
+         Hypothetical Document Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/combine_docs_examples/textsplitter.html">
+         Text Splitter
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/utils/combine_docs_examples/vectorstores.html">
+         VectorStores
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/utils.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules/chains.html">
+   Chains
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/chains/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../modules/chains/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../modules/chains/generic_how_to.html">
+       Generic Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/generic/llm_chain.html">
+         LLM Chain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/generic/sequential_chains.html">
+         Sequential Chains
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/generic/transformation.html">
+         Transformation Chain
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../modules/chains/combine_docs_how_to.html">
+       CombineDocuments Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/combine_docs_examples/qa_with_sources.html">
+         Question Answering with Sources
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/combine_docs_examples/question_answering.html">
+         Question Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/combine_docs_examples/summarize.html">
+         Summarization
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/combine_docs_examples/vector_db_qa.html">
+         Vector DB Question/Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/combine_docs_examples/vector_db_qa_with_sources.html">
+         VectorDB Question Ansering with Sources
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../../modules/chains/utility_how_to.html">
+       Utility Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/examples/llm_bash.html">
+         BashChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/examples/llm_checker.html">
+         LLMCheckerChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/examples/llm_math.html">
+         LLM Math
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/examples/llm_requests.html">
+         LLMRequestsChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/examples/moderation.html">
+         Moderation
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/examples/pal.html">
+         PAL
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../../modules/chains/examples/sqlite.html">
+         SQLite example
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/chains/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/chains.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules/agents.html">
+   Agents
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/agents/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/agents/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../modules/agents/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/examples/custom_agent.html">
+       Custom Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/examples/custom_tools.html">
+       Defining Custom Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/examples/intermediate_steps.html">
+       Intermediate Steps
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/examples/max_iterations.html">
+       Max Iterations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/examples/multi_input_tool.html">
+       Multi Input Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/examples/search_tools.html">
+       Search Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/implementations/mrkl.html">
+       MRKL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/implementations/react.html">
+       ReAct
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/agents/implementations/self_ask_with_search.html">
+       Self Ask With Search
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/agents.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../modules/memory.html">
+   Memory
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/memory/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../modules/memory/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../modules/memory/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+    <label for="toctree-checkbox-21">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/adding_memory.html">
+       Adding Memory To an LLMChain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/adding_memory_chain_multiple_inputs.html">
+       Adding Memory to a Multi-Input Chain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/agent_with_memory.html">
+       Adding Memory to an Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/chatgpt_clone.html">
+       ChatGPT Clone
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/conversational_agent.html">
+       Conversation Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/conversational_customization.html">
+       Conversational Memory Customization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/custom_memory.html">
+       Custom Memory
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../modules/memory/examples/multiple_memory.html">
+       Multiple Memory
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Use Cases
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/agents.html">
+   Agents
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/chatbots.html">
+   Chatbots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/generate_examples.html">
+   Generate Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/combine_docs.html">
+   Data Augmented Generation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/question_answering.html">
+   Question Answering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/summarization.html">
+   Summarization
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../use_cases/evaluation.html">
+   Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/data_augmented_question_answering.html">
+     Data Augmented Question Answering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/huggingface_datasets.html">
+     Using HuggingFace Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/question_answering.html">
+     Question Answering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/model_laboratory.html">
+   Model Comparison
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../reference/installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../reference/integrations.html">
+   Integrations
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../reference.html">
+   API References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/prompts.html">
+     Prompts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+    <label for="toctree-checkbox-24">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/utils.html">
+     Utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+    <label for="toctree-checkbox-25">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/chains.html">
+     Chains
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/agents.html">
+     Agents
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ecosystem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../ecosystem.html">
+   LangChain Ecosystem
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/ai21.html">
+     AI21 Labs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/cohere.html">
+     Cohere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/google_search.html">
+     Google Search Wrapper
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/hazy_research.html">
+     Hazy Research
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/huggingface.html">
+     Hugging Face
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/nlpcloud.html">
+     NLPCloud
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/openai.html">
+     OpenAI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/pinecone.html">
+     Pinecone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/serpapi.html">
+     SerpAPI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/weaviate.html">
+     Weaviate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/wolfram_alpha.html">
+     Wolfram Alpha Wrapper
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Additional Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../gallery.html">
+   LangChain Gallery
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../deployments.html">
+   Deployments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/hwchase17/langchain"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for langchain.llms.openai</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Wrapper around OpenAI APIs.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Extra</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">root_validator</span>
+
+<span class="kn">from</span> <span class="nn">langchain.llms.base</span> <span class="kn">import</span> <span class="n">BaseLLM</span>
+<span class="kn">from</span> <span class="nn">langchain.schema</span> <span class="kn">import</span> <span class="n">Generation</span><span class="p">,</span> <span class="n">LLMResult</span>
+<span class="kn">from</span> <span class="nn">langchain.utils</span> <span class="kn">import</span> <span class="n">get_from_dict_or_env</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">BaseOpenAI</span><span class="p">(</span><span class="n">BaseLLM</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper around OpenAI large language models.</span>
+
+<span class="sd">    To use, you should have the ``openai`` python package installed, and the</span>
+<span class="sd">    environment variable ``OPENAI_API_KEY`` set with your API key.</span>
+
+<span class="sd">    Any parameters that are valid to be passed to the openai.create call can be passed</span>
+<span class="sd">    in, even if not explicitly saved on this class.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            from langchain import OpenAI</span>
+<span class="sd">            openai = OpenAI(model_name=&quot;text-davinci-003&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">client</span><span class="p">:</span> <span class="n">Any</span>  <span class="c1">#: :meta private:</span>
+    <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;text-davinci-003&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Model name to use.&quot;&quot;&quot;</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;What sampling temperature to use.&quot;&quot;&quot;</span>
+    <span class="n">max_tokens</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The maximum number of tokens to generate in the completion.</span>
+<span class="sd">    -1 returns as many tokens as possible given the prompt and</span>
+<span class="sd">    the models maximal context size.&quot;&quot;&quot;</span>
+    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Total probability mass of tokens to consider at each step.&quot;&quot;&quot;</span>
+    <span class="n">frequency_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Penalizes repeated tokens according to frequency.&quot;&quot;&quot;</span>
+    <span class="n">presence_penalty</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Penalizes repeated tokens.&quot;&quot;&quot;</span>
+    <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;How many completions to generate for each prompt.&quot;&quot;&quot;</span>
+    <span class="n">best_of</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates best_of completions server-side and returns the &quot;best&quot;.&quot;&quot;&quot;</span>
+    <span class="n">model_kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Holds any model parameters valid for `create` call not explicitly specified.&quot;&quot;&quot;</span>
+    <span class="n">openai_api_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Batch size to use when passing multiple documents to generate.&quot;&quot;&quot;</span>
+    <span class="n">request_timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Timeout for requests to OpenAI completion API. Default is 600 seconds.&quot;&quot;&quot;</span>
+    <span class="n">logit_bias</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adjust the probability of specific tokens being generated.&quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configuration for this pydantic object.&quot;&quot;&quot;</span>
+
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">Extra</span><span class="o">.</span><span class="n">ignore</span>
+
+    <span class="nd">@root_validator</span><span class="p">(</span><span class="n">pre</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">build_extra</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build extra kwargs from additional params that were passed in.&quot;&quot;&quot;</span>
+        <span class="n">all_required_field_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">field</span><span class="o">.</span><span class="n">alias</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__fields__</span><span class="o">.</span><span class="n">values</span><span class="p">()}</span>
+
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model_kwargs&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">for</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">field_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_required_field_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="n">extra</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> supplied twice.&quot;</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;&quot;&quot;WARNING! </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> is not default parameter.</span>
+<span class="s2">                    </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> was transfered to model_kwargs.</span>
+<span class="s2">                    Please confirm that </span><span class="si">{</span><span class="n">field_name</span><span class="si">}</span><span class="s2"> is what you intended.&quot;&quot;&quot;</span>
+                <span class="p">)</span>
+                <span class="n">extra</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">field_name</span><span class="p">)</span>
+        <span class="n">values</span><span class="p">[</span><span class="s2">&quot;model_kwargs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extra</span>
+        <span class="k">return</span> <span class="n">values</span>
+
+    <span class="nd">@root_validator</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">validate_environment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate that api key and python package exists in environment.&quot;&quot;&quot;</span>
+        <span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">get_from_dict_or_env</span><span class="p">(</span>
+            <span class="n">values</span><span class="p">,</span> <span class="s2">&quot;openai_api_key&quot;</span><span class="p">,</span> <span class="s2">&quot;OPENAI_API_KEY&quot;</span>
+        <span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">openai</span>
+
+            <span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">openai_api_key</span>
+            <span class="n">values</span><span class="p">[</span><span class="s2">&quot;client&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Could not import openai python package. &quot;</span>
+                <span class="s2">&quot;Please it install it with `pip install openai`.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">values</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_default_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the default parameters for calling OpenAI API.&quot;&quot;&quot;</span>
+        <span class="n">normal_params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>
+            <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_tokens</span><span class="p">,</span>
+            <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_p</span><span class="p">,</span>
+            <span class="s2">&quot;frequency_penalty&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency_penalty</span><span class="p">,</span>
+            <span class="s2">&quot;presence_penalty&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">presence_penalty</span><span class="p">,</span>
+            <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+            <span class="s2">&quot;best_of&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">best_of</span><span class="p">,</span>
+            <span class="s2">&quot;request_timeout&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_timeout</span><span class="p">,</span>
+            <span class="s2">&quot;logit_bias&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">logit_bias</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">normal_params</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">model_kwargs</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">_generate</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LLMResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call out to OpenAI&#39;s endpoint with k unique prompts.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            prompts: The prompts to pass into the model.</span>
+<span class="sd">            stop: Optional list of stop words to use when generating.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The full LLM output.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                response = openai.generate([&quot;Tell me a joke.&quot;])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: write a unit test for this</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invocation_params</span>
+        <span class="k">if</span> <span class="n">stop</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;stop&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`stop` found in both the input and default params.&quot;</span><span class="p">)</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;stop&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stop</span>
+
+        <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;max_tokens&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompts</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;max_tokens set to -1 not supported for multiple inputs.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;max_tokens&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_tokens_for_prompt</span><span class="p">(</span><span class="n">prompts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">sub_prompts</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">prompts</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompts</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">token_usage</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Get the token usage from the response.</span>
+        <span class="c1"># Includes prompt, completion, and total tokens used.</span>
+        <span class="n">_keys</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;completion_tokens&quot;</span><span class="p">,</span> <span class="s2">&quot;prompt_tokens&quot;</span><span class="p">,</span> <span class="s2">&quot;total_tokens&quot;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">_prompts</span> <span class="ow">in</span> <span class="n">sub_prompts</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">_prompts</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">choices</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">])</span>
+            <span class="n">_keys_to_use</span> <span class="o">=</span> <span class="n">_keys</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;usage&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">_key</span> <span class="ow">in</span> <span class="n">_keys_to_use</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">token_usage</span><span class="p">:</span>
+                    <span class="n">token_usage</span><span class="p">[</span><span class="n">_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;usage&quot;</span><span class="p">][</span><span class="n">_key</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">token_usage</span><span class="p">[</span><span class="n">_key</span><span class="p">]</span> <span class="o">+=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;usage&quot;</span><span class="p">][</span><span class="n">_key</span><span class="p">]</span>
+        <span class="n">generations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prompts</span><span class="p">):</span>
+            <span class="n">sub_choices</span> <span class="o">=</span> <span class="n">choices</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">generations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">Generation</span><span class="p">(</span>
+                        <span class="n">text</span><span class="o">=</span><span class="n">choice</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span>
+                        <span class="n">generation_info</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                            <span class="n">finish_reason</span><span class="o">=</span><span class="n">choice</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;finish_reason&quot;</span><span class="p">),</span>
+                            <span class="n">logprobs</span><span class="o">=</span><span class="n">choice</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logprobs&quot;</span><span class="p">),</span>
+                        <span class="p">),</span>
+                    <span class="p">)</span>
+                    <span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="n">sub_choices</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">LLMResult</span><span class="p">(</span>
+            <span class="n">generations</span><span class="o">=</span><span class="n">generations</span><span class="p">,</span> <span class="n">llm_output</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;token_usage&quot;</span><span class="p">:</span> <span class="n">token_usage</span><span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Call OpenAI with streaming flag and return the resulting generator.</span>
+
+<span class="sd">        BETA: this is a beta feature while we figure out the right abstraction.</span>
+<span class="sd">        Once that happens, this interface could change.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            prompt: The prompts to pass into the model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A generator representing the stream of tokens from OpenAI.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                generator = openai.stream(&quot;Tell me a joke.&quot;)</span>
+<span class="sd">                for token in generator:</span>
+<span class="sd">                    yield token</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invocation_params</span>
+        <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;best_of&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;OpenAI only supports best_of == 1 for streaming&quot;</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;stream&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">generator</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_invocation_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the parameters used to invoke the model.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_params</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_identifying_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the identifying parameters.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;model_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">},</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_params</span><span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return type of llm.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;openai&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_num_tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate num tokens with tiktoken package.&quot;&quot;&quot;</span>
+        <span class="c1"># tiktoken NOT supported for Python 3.8 or below</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_num_tokens</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">tiktoken</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Could not import tiktoken python package. &quot;</span>
+                <span class="s2">&quot;This is needed in order to calculate get_num_tokens. &quot;</span>
+                <span class="s2">&quot;Please it install it with `pip install tiktoken`.&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># create a GPT-3 encoder instance</span>
+        <span class="n">enc</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">get_encoding</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">)</span>
+
+        <span class="c1"># encode the text using the GPT-3 encoder</span>
+        <span class="n">tokenized_text</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="c1"># calculate the number of tokens in the encoded text</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokenized_text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">modelname_to_contextsize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modelname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the maximum number of tokens possible to generate for a model.</span>
+
+<span class="sd">        text-davinci-003: 4,000 tokens</span>
+<span class="sd">        text-curie-001: 2,048 tokens</span>
+<span class="sd">        text-babbage-001: 2,048 tokens</span>
+<span class="sd">        text-ada-001: 2,048 tokens</span>
+<span class="sd">        code-davinci-002: 8,000 tokens</span>
+<span class="sd">        code-cushman-001: 2,048 tokens</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            modelname: The modelname we want to know the context size for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The maximum context size</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                max_tokens = openai.modelname_to_contextsize(&quot;text-davinci-003&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">modelname</span> <span class="o">==</span> <span class="s2">&quot;text-davinci-003&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">4000</span>
+        <span class="k">elif</span> <span class="n">modelname</span> <span class="o">==</span> <span class="s2">&quot;text-curie-001&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">2048</span>
+        <span class="k">elif</span> <span class="n">modelname</span> <span class="o">==</span> <span class="s2">&quot;text-babbage-001&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">2048</span>
+        <span class="k">elif</span> <span class="n">modelname</span> <span class="o">==</span> <span class="s2">&quot;text-ada-001&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">2048</span>
+        <span class="k">elif</span> <span class="n">modelname</span> <span class="o">==</span> <span class="s2">&quot;code-davinci-002&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">8000</span>
+        <span class="k">elif</span> <span class="n">modelname</span> <span class="o">==</span> <span class="s2">&quot;code-cushman-001&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">2048</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">4000</span>
+
+    <span class="k">def</span> <span class="nf">max_tokens_for_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the maximum number of tokens possible to generate for a prompt.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            prompt: The prompt to pass into the model.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The maximum number of tokens to generate for a prompt.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                max_tokens = openai.max_token_for_prompt(&quot;Tell me a joke.&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">num_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_num_tokens</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+
+        <span class="c1"># get max context size for model by name</span>
+        <span class="n">max_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modelname_to_contextsize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">max_size</span> <span class="o">-</span> <span class="n">num_tokens</span>
+
+
+<div class="viewcode-block" id="OpenAI"><a class="viewcode-back" href="../../../reference/modules/llms.html#langchain.llms.OpenAI">[docs]</a><span class="k">class</span> <span class="nc">OpenAI</span><span class="p">(</span><span class="n">BaseOpenAI</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generic OpenAI class that uses model name.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_invocation_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">},</span> <span class="o">**</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_invocation_params</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="AzureOpenAI"><a class="viewcode-back" href="../../../reference/modules/llms.html#langchain.llms.AzureOpenAI">[docs]</a><span class="k">class</span> <span class="nc">AzureOpenAI</span><span class="p">(</span><span class="n">BaseOpenAI</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Azure specific OpenAI class that uses deployment name.&quot;&quot;&quot;</span>
+
+    <span class="n">deployment_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deployment name to use.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_identifying_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="o">**</span><span class="p">{</span><span class="s2">&quot;deployment_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">deployment_name</span><span class="p">},</span>
+            <span class="o">**</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_identifying_params</span><span class="p">,</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_invocation_params</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;engine&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">deployment_name</span><span class="p">},</span> <span class="o">**</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_invocation_params</span><span class="p">}</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Harrison Chase<br/>
+  
+      &copy; Copyright 2022, Harrison Chase.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,7 @@
+langchain
+beautifulsoup4
+weaviate-client
+openai
+black
+isort
+Flask

@@ -1,0 +1,1227 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Integrations &#8212; 🦜🔗 LangChain 0.0.60</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="/_/static/css/badge_only.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script async="async" src="/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="canonical" href="https://langchain.readthedocs.io/en/latest/modules/llms/integrations.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Azure OpenAI LLM Example" href="integrations/azure_openai_example.html" />
+    <link rel="prev" title="LLM Serialization" href="examples/llm_serialization.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2023-01-11T15:11:42Z", "builder": "sphinx", "canonical_url": null, "commit": "7b6e7f6e", "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "modules/llms/integrations", "programming_language": "words", "project": "langchain", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_book_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">🦜🔗 LangChain 0.0.60</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started/getting_started.html">
+   Quickstart Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modules
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../prompts.html">
+   Prompt Templates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../prompts/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../prompts/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../prompts/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../prompts/examples/custom_prompt_template.html">
+       Create a custom prompt template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../prompts/examples/custom_example_selector.html">
+       Create a custom example selector
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../prompts/examples/few_shot_examples.html">
+       Provide few shot examples to a prompt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../prompts/examples/prompt_serialization.html">
+       Prompt Serialization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../prompts/examples/example_selectors.html">
+       Example Selectors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../reference/prompts.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../llms.html">
+   LLMs
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="how_to_guides.html">
+     How-To Guides
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="generic_how_to.html">
+       Generic Functionality
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="examples/custom_llm.html">
+         Custom LLM
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="examples/llm_caching.html">
+         LLM Caching
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="examples/llm_serialization.html">
+         LLM Serialization
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="current reference internal" href="#">
+       Integrations
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="integrations/azure_openai_example.html">
+         Azure OpenAI LLM Example
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="integrations/huggingface_hub.html">
+         HuggingFace Hub
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="integrations/manifest.html">
+         Manifest
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reference/modules/llms.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../utils.html">
+   Utils
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../utils/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../utils/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../utils/generic_how_to.html">
+       Generic Utilities
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/examples/bash.html">
+         Bash
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/examples/google_search.html">
+         Google Search
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/examples/python.html">
+         Python REPL
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/examples/requests.html">
+         Requests
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/examples/serpapi.html">
+         SerpAPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/examples/wolfram_alpha.html">
+         Wolfram Alpha
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../utils/combine_docs_how_to.html">
+       Utilities for working with Documents
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/combine_docs_examples/embeddings.html">
+         Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/combine_docs_examples/hyde.html">
+         Hypothetical Document Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/combine_docs_examples/textsplitter.html">
+         Text Splitter
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../utils/combine_docs_examples/vectorstores.html">
+         VectorStores
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../reference/utils.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chains.html">
+   Chains
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chains/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../chains/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../chains/generic_how_to.html">
+       Generic Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/generic/llm_chain.html">
+         LLM Chain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/generic/sequential_chains.html">
+         Sequential Chains
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/generic/transformation.html">
+         Transformation Chain
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../chains/combine_docs_how_to.html">
+       CombineDocuments Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/combine_docs_examples/qa_with_sources.html">
+         Question Answering with Sources
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/combine_docs_examples/question_answering.html">
+         Question Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/combine_docs_examples/summarize.html">
+         Summarization
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/combine_docs_examples/vector_db_qa.html">
+         Vector DB Question/Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/combine_docs_examples/vector_db_qa_with_sources.html">
+         VectorDB Question Ansering with Sources
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../chains/utility_how_to.html">
+       Utility Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/examples/llm_bash.html">
+         BashChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/examples/llm_checker.html">
+         LLMCheckerChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/examples/llm_math.html">
+         LLM Math
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/examples/llm_requests.html">
+         LLMRequestsChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/examples/moderation.html">
+         Moderation
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/examples/pal.html">
+         PAL
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../chains/examples/sqlite.html">
+         SQLite example
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chains/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reference/modules/chains.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../agents.html">
+   Agents
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../agents/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../agents/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../agents/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/examples/custom_agent.html">
+       Custom Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/examples/custom_tools.html">
+       Defining Custom Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/examples/intermediate_steps.html">
+       Intermediate Steps
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/examples/max_iterations.html">
+       Max Iterations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/examples/multi_input_tool.html">
+       Multi Input Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/examples/search_tools.html">
+       Search Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/implementations/mrkl.html">
+       MRKL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/implementations/react.html">
+       ReAct
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../agents/implementations/self_ask_with_search.html">
+       Self Ask With Search
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reference/modules/agents.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../memory.html">
+   Memory
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../memory/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../memory/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../memory/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+    <label for="toctree-checkbox-21">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/adding_memory.html">
+       Adding Memory To an LLMChain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/adding_memory_chain_multiple_inputs.html">
+       Adding Memory to a Multi-Input Chain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/agent_with_memory.html">
+       Adding Memory to an Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/chatgpt_clone.html">
+       ChatGPT Clone
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/conversational_agent.html">
+       Conversation Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/conversational_customization.html">
+       Conversational Memory Customization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/custom_memory.html">
+       Custom Memory
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../memory/examples/multiple_memory.html">
+       Multiple Memory
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Use Cases
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../use_cases/agents.html">
+   Agents
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../use_cases/chatbots.html">
+   Chatbots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../use_cases/generate_examples.html">
+   Generate Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../use_cases/combine_docs.html">
+   Data Augmented Generation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../use_cases/question_answering.html">
+   Question Answering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../use_cases/summarization.html">
+   Summarization
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../use_cases/evaluation.html">
+   Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../use_cases/evaluation/data_augmented_question_answering.html">
+     Data Augmented Question Answering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../use_cases/evaluation/huggingface_datasets.html">
+     Using HuggingFace Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../use_cases/evaluation/question_answering.html">
+     Question Answering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../use_cases/model_laboratory.html">
+   Model Comparison
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reference/integrations.html">
+   Integrations
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../reference.html">
+   API References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../reference/prompts.html">
+     Prompts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+    <label for="toctree-checkbox-24">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../reference/utils.html">
+     Utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+    <label for="toctree-checkbox-25">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reference/modules/chains.html">
+     Chains
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../reference/modules/agents.html">
+     Agents
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ecosystem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ecosystem.html">
+   LangChain Ecosystem
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/ai21.html">
+     AI21 Labs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/cohere.html">
+     Cohere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/google_search.html">
+     Google Search Wrapper
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/hazy_research.html">
+     Hazy Research
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/huggingface.html">
+     Hugging Face
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/nlpcloud.html">
+     NLPCloud
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/openai.html">
+     OpenAI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/pinecone.html">
+     Pinecone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/serpapi.html">
+     SerpAPI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/weaviate.html">
+     Weaviate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ecosystem/wolfram_alpha.html">
+     Wolfram Alpha Wrapper
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Additional Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../gallery.html">
+   LangChain Gallery
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../deployments.html">
+   Deployments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/hwchase17/langchain"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/modules/llms/integrations.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Integrations</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="integrations">
+<h1>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">#</a></h1>
+<p>The examples here are all “how-to” guides for how to integrate with various LLM providers.</p>
+<p><a class="reference external" href="./integrations/huggingface_hub.html">Huggingface Hub</a>: Covers how to connect to LLMs hosted on HuggingFace Hub.</p>
+<p><a class="reference external" href="./integrations/azure_openai_example.html">Azure OpenAI</a>: Covers how to connect to Azure-hosted OpenAI Models.</p>
+<p><a class="reference external" href="./integrations/manifest.html">Manifest</a>: Covers how to utilize the Manifest wrapper.</p>
+<div class="toctree-wrapper compound" id="specific-llm-integrations">
+</div>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="examples/llm_serialization.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">LLM Serialization</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="integrations/azure_openai_example.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Azure OpenAI LLM Example</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Harrison Chase<br/>
+  
+      &copy; Copyright 2022, Harrison Chase.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

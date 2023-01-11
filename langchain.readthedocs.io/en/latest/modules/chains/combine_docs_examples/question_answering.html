@@ -1,0 +1,1762 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Question Answering &#8212; 🦜🔗 LangChain 0.0.60</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="/_/static/css/badge_only.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script async="async" src="/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="canonical" href="https://langchain.readthedocs.io/en/latest/modules/chains/combine_docs_examples/question_answering.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Summarization" href="summarize.html" />
+    <link rel="prev" title="Question Answering with Sources" href="qa_with_sources.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2023-01-11T15:11:38Z", "builder": "sphinx", "canonical_url": null, "commit": "7b6e7f6e", "docroot": "/docs/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "modules/chains/combine_docs_examples/question_answering", "programming_language": "words", "project": "langchain", "proxied_api_host": "/_", "source_suffix": ".ipynb", "subprojects": {}, "theme": "sphinx_book_theme", "user_analytics_code": "", "version": "latest"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">🦜🔗 LangChain 0.0.60</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../getting_started/getting_started.html">
+   Quickstart Guide
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modules
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../prompts.html">
+   Prompt Templates
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prompts/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../prompts/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../prompts/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/custom_prompt_template.html">
+       Create a custom prompt template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/custom_example_selector.html">
+       Create a custom example selector
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/few_shot_examples.html">
+       Provide few shot examples to a prompt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/prompt_serialization.html">
+       Prompt Serialization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../prompts/examples/example_selectors.html">
+       Example Selectors
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/prompts.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../llms.html">
+   LLMs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../llms/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../llms/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../llms/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../llms/generic_how_to.html">
+       Generic Functionality
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/examples/custom_llm.html">
+         Custom LLM
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/examples/llm_caching.html">
+         LLM Caching
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/examples/llm_serialization.html">
+         LLM Serialization
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../llms/integrations.html">
+       Integrations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+      <label for="toctree-checkbox-7">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/integrations/azure_openai_example.html">
+         Azure OpenAI LLM Example
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/integrations/huggingface_hub.html">
+         HuggingFace Hub
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../llms/integrations/manifest.html">
+         Manifest
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/llms.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../utils.html">
+   Utils
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../utils/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../utils/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../utils/generic_how_to.html">
+       Generic Utilities
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+      <label for="toctree-checkbox-10">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/examples/bash.html">
+         Bash
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/examples/google_search.html">
+         Google Search
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/examples/python.html">
+         Python REPL
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/examples/requests.html">
+         Requests
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/examples/serpapi.html">
+         SerpAPI
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/examples/wolfram_alpha.html">
+         Wolfram Alpha
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../../utils/combine_docs_how_to.html">
+       Utilities for working with Documents
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/combine_docs_examples/embeddings.html">
+         Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/combine_docs_examples/hyde.html">
+         Hypothetical Document Embeddings
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/combine_docs_examples/textsplitter.html">
+         Text Splitter
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../../utils/combine_docs_examples/vectorstores.html">
+         VectorStores
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/utils.html">
+     Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+    <label for="toctree-checkbox-12">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../chains.html">
+   Chains
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../how_to_guides.html">
+     How-To Guides
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+    <label for="toctree-checkbox-14">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../generic_how_to.html">
+       Generic Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../generic/llm_chain.html">
+         LLM Chain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../generic/sequential_chains.html">
+         Sequential Chains
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../generic/transformation.html">
+         Transformation Chain
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="../combine_docs_how_to.html">
+       CombineDocuments Chains
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4">
+        <a class="reference internal" href="qa_with_sources.html">
+         Question Answering with Sources
+        </a>
+       </li>
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         Question Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="summarize.html">
+         Summarization
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="vector_db_qa.html">
+         Vector DB Question/Answering
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="vector_db_qa_with_sources.html">
+         VectorDB Question Ansering with Sources
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../utility_how_to.html">
+       Utility Chains
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/llm_bash.html">
+         BashChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/llm_checker.html">
+         LLMCheckerChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/llm_math.html">
+         LLM Math
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/llm_requests.html">
+         LLMRequestsChain
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/moderation.html">
+         Moderation
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/pal.html">
+         PAL
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../examples/sqlite.html">
+         SQLite example
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/chains.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../agents.html">
+   Agents
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+  <label for="toctree-checkbox-18">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../agents/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../agents/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../agents/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/custom_agent.html">
+       Custom Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/custom_tools.html">
+       Defining Custom Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/intermediate_steps.html">
+       Intermediate Steps
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/max_iterations.html">
+       Max Iterations
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/multi_input_tool.html">
+       Multi Input Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/examples/search_tools.html">
+       Search Tools
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/implementations/mrkl.html">
+       MRKL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/implementations/react.html">
+       ReAct
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../agents/implementations/self_ask_with_search.html">
+       Self Ask With Search
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/agents.html">
+     Reference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../memory.html">
+   Memory
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
+  <label for="toctree-checkbox-20">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../memory/getting_started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../memory/key_concepts.html">
+     Key Concepts
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../memory/how_to_guides.html">
+     How-To Guides
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
+    <label for="toctree-checkbox-21">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/adding_memory.html">
+       Adding Memory To an LLMChain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/adding_memory_chain_multiple_inputs.html">
+       Adding Memory to a Multi-Input Chain
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/agent_with_memory.html">
+       Adding Memory to an Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/chatgpt_clone.html">
+       ChatGPT Clone
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/conversational_agent.html">
+       Conversation Agent
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/conversational_customization.html">
+       Conversational Memory Customization
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/custom_memory.html">
+       Custom Memory
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../memory/examples/multiple_memory.html">
+       Multiple Memory
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Use Cases
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/agents.html">
+   Agents
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/chatbots.html">
+   Chatbots
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/generate_examples.html">
+   Generate Examples
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/combine_docs.html">
+   Data Augmented Generation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/question_answering.html">
+   Question Answering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/summarization.html">
+   Summarization
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../use_cases/evaluation.html">
+   Evaluation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
+  <label for="toctree-checkbox-22">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/data_augmented_question_answering.html">
+     Data Augmented Question Answering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/huggingface_datasets.html">
+     Using HuggingFace Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_cases/evaluation/question_answering.html">
+     Question Answering
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../use_cases/model_laboratory.html">
+   Model Comparison
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../reference/installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../reference/integrations.html">
+   Integrations
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../reference.html">
+   API References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+  <label for="toctree-checkbox-23">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/prompts.html">
+     Prompts
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" type="checkbox"/>
+    <label for="toctree-checkbox-24">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/prompt.html">
+       PromptTemplates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/example_selector.html">
+       Example Selector
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../../reference/utils.html">
+     Utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" type="checkbox"/>
+    <label for="toctree-checkbox-25">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/python.html">
+       Python REPL
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/serpapi.html">
+       SerpAPI
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/docstore.html">
+       Docstore
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/text_splitter.html">
+       Text Splitter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/embeddings.html">
+       Embeddings
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../../reference/modules/vectorstore.html">
+       VectorStores
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/chains.html">
+     Chains
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../reference/modules/agents.html">
+     Agents
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ecosystem
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../ecosystem.html">
+   LangChain Ecosystem
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" type="checkbox"/>
+  <label for="toctree-checkbox-26">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/ai21.html">
+     AI21 Labs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/cohere.html">
+     Cohere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/google_search.html">
+     Google Search Wrapper
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/hazy_research.html">
+     Hazy Research
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/huggingface.html">
+     Hugging Face
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/nlpcloud.html">
+     NLPCloud
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/openai.html">
+     OpenAI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/pinecone.html">
+     Pinecone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/serpapi.html">
+     SerpAPI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/weaviate.html">
+     Weaviate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../ecosystem/wolfram_alpha.html">
+     Wolfram Alpha Wrapper
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Additional Resources
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../gallery.html">
+   LangChain Gallery
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../deployments.html">
+   Deployments
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/hwchase17/langchain"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/modules/chains/combine_docs_examples/question_answering.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-data">
+   Prepare Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quickstart">
+   Quickstart
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-stuff-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     stuff
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-map-reduce-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     map_reduce
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-refine-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     refine
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-map-rerank-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     map-rerank
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Question Answering</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-data">
+   Prepare Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quickstart">
+   Quickstart
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-stuff-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     stuff
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-map-reduce-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     map_reduce
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-refine-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     refine
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-map-rerank-chain">
+   The
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     map-rerank
+    </span>
+   </code>
+   Chain
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="question-answering">
+<h1>Question Answering<a class="headerlink" href="#question-answering" title="Permalink to this headline">#</a></h1>
+<p>This notebook walks through how to use LangChain for question answering over a list of documents. It covers four different types of chaings: <code class="docutils literal notranslate"><span class="pre">stuff</span></code>, <code class="docutils literal notranslate"><span class="pre">map_reduce</span></code>, <code class="docutils literal notranslate"><span class="pre">refine</span></code>, <code class="docutils literal notranslate"><span class="pre">map-rerank</span></code>. For a more in depth explanation of what these chain types are, see <a class="reference internal" href="../combine_docs.html"><span class="doc std std-doc">here</span></a>.</p>
+<section id="prepare-data">
+<h2>Prepare Data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">#</a></h2>
+<p>First we prepare the data. For this example we do similarity search over a vector database, but these documents could be fetched in any manner (the point of this notebook to highlight what to do AFTER you fetch the documents).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.embeddings.openai</span> <span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain.vectorstores.faiss</span> <span class="kn">import</span> <span class="n">FAISS</span>
+<span class="kn">from</span> <span class="nn">langchain.docstore.document</span> <span class="kn">import</span> <span class="n">Document</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../../state_of_the_union.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">state_of_the_union</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">state_of_the_union</span><span class="p">)</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">docsearch</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_texts</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What did the president say about Justice Breyer&quot;</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">docsearch</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.chains.question_answering</span> <span class="kn">import</span> <span class="n">load_qa_chain</span>
+<span class="kn">from</span> <span class="nn">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">#</a></h2>
+<p>If you just want to get started as quickly as possible, this is the recommended way to do it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;stuff&quot;</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What did the president say about Justice Breyer&quot;</span>
+<span class="n">chain</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">input_documents</span><span class="o">=</span><span class="n">docs</span><span class="p">,</span> <span class="n">question</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; The president said that he was honoring Justice Breyer for his service to the country and that he was a Constitutional scholar, Army veteran, and retiring Justice of the United States Supreme Court.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want more control and understanding over what is happening, please see the information below.</p>
+</section>
+<section id="the-stuff-chain">
+<h2>The <code class="docutils literal notranslate"><span class="pre">stuff</span></code> Chain<a class="headerlink" href="#the-stuff-chain" title="Permalink to this headline">#</a></h2>
+<p>This sections shows results of using the <code class="docutils literal notranslate"><span class="pre">stuff</span></code> Chain to do question answering.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;stuff&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What did the president say about Justice Breyer&quot;</span>
+<span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;output_text&#39;: &#39; The president said that he was honoring Justice Breyer for his service to the country and that he was a Constitutional scholar, Army veteran, and retiring Justice of the United States Supreme Court.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Custom Prompts</strong></p>
+<p>You can also use your own prompts with this chain. In this example, we will respond in Italian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Use the following pieces of context to answer the question at the end. If you don&#39;t know the answer, just say that you don&#39;t know, don&#39;t try to make up an answer.</span>
+
+<span class="si">{context}</span>
+
+<span class="s2">Question: </span><span class="si">{question}</span>
+<span class="s2">Answer in Italian:&quot;&quot;&quot;</span>
+<span class="n">PROMPT</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">template</span><span class="o">=</span><span class="n">prompt_template</span><span class="p">,</span> <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;stuff&quot;</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">PROMPT</span><span class="p">)</span>
+<span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;output_text&#39;: &#39; Il presidente ha detto che Justice Breyer ha dedicato la sua vita a servire questo paese e ha onorato la sua carriera come giudice della Corte Suprema degli Stati Uniti.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-map-reduce-chain">
+<h2>The <code class="docutils literal notranslate"><span class="pre">map_reduce</span></code> Chain<a class="headerlink" href="#the-map-reduce-chain" title="Permalink to this headline">#</a></h2>
+<p>This sections shows results of using the <code class="docutils literal notranslate"><span class="pre">map_reduce</span></code> Chain to do question answering.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;map_reduce&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What did the president say about Justice Breyer&quot;</span>
+<span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;output_text&#39;: &#39; The president said, &quot;Justice Breyer, thank you for your service.&quot;&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Intermediate Steps</strong></p>
+<p>We can also return the intermediate steps for <code class="docutils literal notranslate"><span class="pre">map_reduce</span></code> chains, should we want to inspect them. This is done with the <code class="docutils literal notranslate"><span class="pre">return_map_steps</span></code> variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;map_reduce&quot;</span><span class="p">,</span> <span class="n">return_map_steps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;intermediate_steps&#39;: [&#39; &quot;Tonight, I’d like to honor someone who has dedicated his life to serve this country: Justice Stephen Breyer—an Army veteran, Constitutional scholar, and retiring Justice of the United States Supreme Court. Justice Breyer, thank you for your service.&quot;&#39;,
+  &#39; None&#39;,
+  &#39; None&#39;,
+  &#39; None&#39;],
+ &#39;output_text&#39;: &#39; The president said, &quot;Justice Breyer, thank you for your service.&quot;&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Custom Prompts</strong></p>
+<p>You can also use your own prompts with this chain. In this example, we will respond in Italian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">question_prompt_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Use the following portion of a long document to see if any of the text is relevant to answer the question. </span>
+<span class="s2">Return any relevant text translated into italian.</span>
+<span class="si">{context}</span>
+<span class="s2">Question: </span><span class="si">{question}</span>
+<span class="s2">Relevant text, if any, in Italian:&quot;&quot;&quot;</span>
+<span class="n">QUESTION_PROMPT</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">template</span><span class="o">=</span><span class="n">question_prompt_template</span><span class="p">,</span> <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">combine_prompt_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Given the following extracted parts of a long document and a question, create a final answer italian. </span>
+<span class="s2">If you don&#39;t know the answer, just say that you don&#39;t know. Don&#39;t try to make up an answer.</span>
+
+<span class="s2">QUESTION: </span><span class="si">{question}</span>
+<span class="s2">=========</span>
+<span class="si">{summaries}</span>
+<span class="s2">=========</span>
+<span class="s2">Answer in Italian:&quot;&quot;&quot;</span>
+<span class="n">COMBINE_PROMPT</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">template</span><span class="o">=</span><span class="n">combine_prompt_template</span><span class="p">,</span> <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;summaries&quot;</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;map_reduce&quot;</span><span class="p">,</span> <span class="n">return_map_steps</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">question_prompt</span><span class="o">=</span><span class="n">QUESTION_PROMPT</span><span class="p">,</span> <span class="n">combine_prompt</span><span class="o">=</span><span class="n">COMBINE_PROMPT</span><span class="p">)</span>
+<span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;intermediate_steps&#39;: [&quot;\nStasera vorrei onorare qualcuno che ha dedicato la sua vita a servire questo paese: il giustizia Stephen Breyer - un veterano dell&#39;esercito, uno studioso costituzionale e un giustizia in uscita della Corte Suprema degli Stati Uniti. Giustizia Breyer, grazie per il tuo servizio.&quot;,
+  &#39;\nNessun testo pertinente.&#39;,
+  &quot;\nCome ho detto l&#39;anno scorso, soprattutto ai nostri giovani americani transgender, avrò sempre il tuo sostegno come tuo Presidente, in modo che tu possa essere te stesso e raggiungere il tuo potenziale donato da Dio.&quot;,
+  &#39;\nNella mia amministrazione, i guardiani sono stati accolti di nuovo. Stiamo andando dietro ai criminali che hanno rubato miliardi di dollari di aiuti di emergenza destinati alle piccole imprese e a milioni di americani. E stasera, annuncio che il Dipartimento di Giustizia nominerà un procuratore capo per la frode pandemica.&#39;],
+ &#39;output_text&#39;: &#39; Non conosco la risposta alla tua domanda su cosa abbia detto il Presidente riguardo al Giustizia Breyer.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-refine-chain">
+<h2>The <code class="docutils literal notranslate"><span class="pre">refine</span></code> Chain<a class="headerlink" href="#the-refine-chain" title="Permalink to this headline">#</a></h2>
+<p>This sections shows results of using the <code class="docutils literal notranslate"><span class="pre">refine</span></code> Chain to do question answering.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;refine&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What did the president say about Justice Breyer&quot;</span>
+<span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;output_text&#39;: &#39;\n\nThe president said that he wanted to honor Justice Breyer for his dedication to serving the country, his legacy of excellence, and his commitment to advancing liberty and justice, as well as for his commitment to protecting the rights of LGBTQ+ Americans and his support for the bipartisan Equality Act. He also mentioned his plan to lower costs to give families a fair shot, lower the deficit, and go after criminals who stole pandemic relief funds. He also announced that the Justice Department will name a chief prosecutor for pandemic fraud.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Intermediate Steps</strong></p>
+<p>We can also return the intermediate steps for <code class="docutils literal notranslate"><span class="pre">refine</span></code> chains, should we want to inspect them. This is done with the <code class="docutils literal notranslate"><span class="pre">return_refine_steps</span></code> variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;refine&quot;</span><span class="p">,</span> <span class="n">return_refine_steps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;intermediate_steps&#39;: [&#39;\nThe president said that he wanted to honor Justice Breyer for his dedication to serving the country and his legacy of excellence.&#39;,
+  &#39;\n\nThe president said that he wanted to honor Justice Breyer for his dedication to serving the country, his legacy of excellence, and his commitment to advancing liberty and justice.&#39;,
+  &#39;\n\nThe president said that he wanted to honor Justice Breyer for his dedication to serving the country, his legacy of excellence, and his commitment to advancing liberty and justice, as well as for his commitment to protecting the rights of LGBTQ+ Americans and his support for the bipartisan Equality Act.&#39;,
+  &#39;\n\nThe president said that he wanted to honor Justice Breyer for his dedication to serving the country, his legacy of excellence, and his commitment to advancing liberty and justice, as well as for his commitment to protecting the rights of LGBTQ+ Americans and his support for the bipartisan Equality Act. He also mentioned his plan to lower costs to give families a fair shot, lower the deficit, and go after criminals who stole pandemic relief funds. He also announced that the Justice Department will name a chief prosecutor for pandemic fraud.&#39;],
+ &#39;output_text&#39;: &#39;\n\nThe president said that he wanted to honor Justice Breyer for his dedication to serving the country, his legacy of excellence, and his commitment to advancing liberty and justice, as well as for his commitment to protecting the rights of LGBTQ+ Americans and his support for the bipartisan Equality Act. He also mentioned his plan to lower costs to give families a fair shot, lower the deficit, and go after criminals who stole pandemic relief funds. He also announced that the Justice Department will name a chief prosecutor for pandemic fraud.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Custom Prompts</strong></p>
+<p>You can also use your own prompts with this chain. In this example, we will respond in Italian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">refine_prompt_template</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;The original question is as follows: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;We have provided an existing answer: </span><span class="si">{existing_answer}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;We have the opportunity to refine the existing answer&quot;</span>
+    <span class="s2">&quot;(only if needed) with some more context below.</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;------------</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;</span><span class="si">{context_str}</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;------------</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;Given the new context, refine the original answer to better &quot;</span>
+    <span class="s2">&quot;answer the question. &quot;</span>
+    <span class="s2">&quot;If the context isn&#39;t useful, return the original answer. Reply in Italian.&quot;</span>
+<span class="p">)</span>
+<span class="n">refine_prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">,</span> <span class="s2">&quot;existing_answer&quot;</span><span class="p">,</span> <span class="s2">&quot;context_str&quot;</span><span class="p">],</span>
+    <span class="n">template</span><span class="o">=</span><span class="n">refine_prompt_template</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="n">initial_qa_template</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;Context information is below. </span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;---------------------</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;</span><span class="si">{context_str}</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">---------------------</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;Given the context information and not prior knowledge, &quot;</span>
+    <span class="s2">&quot;answer the question: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Your answer should be in Italian.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+<span class="n">initial_qa_prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;context_str&quot;</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">],</span> <span class="n">template</span><span class="o">=</span><span class="n">initial_qa_template</span>
+<span class="p">)</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;refine&quot;</span><span class="p">,</span> <span class="n">return_refine_steps</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">question_prompt</span><span class="o">=</span><span class="n">initial_qa_prompt</span><span class="p">,</span> <span class="n">refine_prompt</span><span class="o">=</span><span class="n">refine_prompt</span><span class="p">)</span>
+<span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;intermediate_steps&#39;: [&#39;\nIl presidente ha detto che Justice Breyer ha dedicato la sua vita al servizio di questo paese e ha onorato la sua carriera. Ha anche detto che la sua nomina di Circuit Court of Appeals Judge Ketanji Brown Jackson continuerà il suo eccezionale lascito.&#39;,
+  &quot;\nIl presidente ha detto che Justice Breyer ha dedicato la sua vita al servizio di questo paese e ha onorato la sua carriera. Ha anche detto che la sua nomina di Circuit Court of Appeals Judge Ketanji Brown Jackson continuerà il suo eccezionale lascito. Ha sottolineato che la sua esperienza come avvocato di alto livello in pratica privata, come ex difensore federale pubblico e come membro di una famiglia di educatori e agenti di polizia, la rende una costruttrice di consenso. Ha anche sottolineato che, dalla sua nomina, ha ricevuto un ampio sostegno, dall&#39;Ordine Fraterno della Polizia a ex giudici nominati da democratici e repubblicani.&quot;,
+  &quot;\n\nIl presidente ha detto che Justice Breyer ha dedicato la sua vita al servizio di questo paese e ha onorato la sua carriera. Ha anche detto che la sua nomina di Circuit Court of Appeals Judge Ketanji Brown Jackson continuerà il suo eccezionale lascito. Ha sottolineato che la sua esperienza come avvocato di alto livello in pratica privata, come ex difensore federale pubblico e come membro di una famiglia di educatori e agenti di polizia, la rende una costruttrice di consenso. Ha anche sottolineato che, dalla sua nomina, ha ricevuto un ampio sostegno, dall&#39;Ordine Fraterno della Polizia a ex giudici nominati da democratici e repubblicani. Ha inoltre sottolineato che la nomina di Justice Breyer è un passo importante verso l&#39;uguaglianza per tutti gli americani, in partic&quot;,
+  &quot;\n\nIl presidente ha detto che Justice Breyer ha dedicato la sua vita al servizio di questo paese e ha onorato la sua carriera. Ha anche detto che la sua nomina di Circuit Court of Appeals Judge Ketanji Brown Jackson continuerà il suo eccezionale lascito. Ha sottolineato che la sua esperienza come avvocato di alto livello in pratica privata, come ex difensore federale pubblico e come membro di una famiglia di educatori e agenti di polizia, la rende una costruttrice di consenso. Ha anche sottolineato che, dalla sua nomina, ha ricevuto un ampio sostegno, dall&#39;Ordine Fraterno della Polizia a ex giudici nominati da democratici e repubblicani. Ha inoltre sottolineato che la nomina di Justice Breyer è un passo importante verso l&#39;uguaglianza per tutti gli americani, in partic&quot;],
+ &#39;output_text&#39;: &quot;\n\nIl presidente ha detto che Justice Breyer ha dedicato la sua vita al servizio di questo paese e ha onorato la sua carriera. Ha anche detto che la sua nomina di Circuit Court of Appeals Judge Ketanji Brown Jackson continuerà il suo eccezionale lascito. Ha sottolineato che la sua esperienza come avvocato di alto livello in pratica privata, come ex difensore federale pubblico e come membro di una famiglia di educatori e agenti di polizia, la rende una costruttrice di consenso. Ha anche sottolineato che, dalla sua nomina, ha ricevuto un ampio sostegno, dall&#39;Ordine Fraterno della Polizia a ex giudici nominati da democratici e repubblicani. Ha inoltre sottolineato che la nomina di Justice Breyer è un passo importante verso l&#39;uguaglianza per tutti gli americani, in partic&quot;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-map-rerank-chain">
+<h2>The <code class="docutils literal notranslate"><span class="pre">map-rerank</span></code> Chain<a class="headerlink" href="#the-map-rerank-chain" title="Permalink to this headline">#</a></h2>
+<p>This sections shows results of using the <code class="docutils literal notranslate"><span class="pre">map-rerank</span></code> Chain to do question answering with sources.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;map_rerank&quot;</span><span class="p">,</span> <span class="n">return_intermediate_steps</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What did the president say about Justice Breyer&quot;</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;output_text&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; The president thanked Justice Breyer for his service and honored him for dedicating his life to serving the country. &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;intermediate_steps&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;answer&#39;: &#39; The president thanked Justice Breyer for his service and honored him for dedicating his life to serving the country. &#39;,
+  &#39;score&#39;: &#39;100&#39;},
+ {&#39;answer&#39;: &quot; The president said that Justice Breyer is a former top litigator in private practice, a former federal public defender, and from a family of public school educators and police officers. He also said that since she&#39;s been nominated, she&#39;s received a broad range of support from the Fraternal Order of Police to former judges appointed by Democrats and Republicans, and that she is a consensus builder.&quot;,
+  &#39;score&#39;: &#39;100&#39;},
+ {&#39;answer&#39;: &#39; The president did not mention Justice Breyer in this context.&#39;,
+  &#39;score&#39;: &#39;0&#39;},
+ {&#39;answer&#39;: &#39; The president did not mention Justice Breyer in the given context. &#39;,
+  &#39;score&#39;: &#39;0&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Custom Prompts</strong></p>
+<p>You can also use your own prompts with this chain. In this example, we will respond in Italian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.prompts.base</span> <span class="kn">import</span> <span class="n">RegexParser</span>
+
+<span class="n">output_parser</span> <span class="o">=</span> <span class="n">RegexParser</span><span class="p">(</span>
+    <span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;(.*?)\nScore: (.*)&quot;</span><span class="p">,</span>
+    <span class="n">output_keys</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;answer&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">prompt_template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Use the following pieces of context to answer the question at the end. If you don&#39;t know the answer, just say that you don&#39;t know, don&#39;t try to make up an answer.</span>
+
+<span class="s2">In addition to giving an answer, also return a score of how fully it answered the user&#39;s question. This should be in the following format:</span>
+
+<span class="s2">Question: [question here]</span>
+<span class="s2">Helpful Answer In Italian: [answer here]</span>
+<span class="s2">Score: [score between 0 and 100]</span>
+
+<span class="s2">Begin!</span>
+
+<span class="s2">Context:</span>
+<span class="s2">---------</span>
+<span class="si">{context}</span>
+<span class="s2">---------</span>
+<span class="s2">Question: </span><span class="si">{question}</span>
+<span class="s2">Helpful Answer In Italian:&quot;&quot;&quot;</span>
+<span class="n">PROMPT</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">template</span><span class="o">=</span><span class="n">prompt_template</span><span class="p">,</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">],</span>
+    <span class="n">output_parser</span><span class="o">=</span><span class="n">output_parser</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">chain</span> <span class="o">=</span> <span class="n">load_qa_chain</span><span class="p">(</span><span class="n">OpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">chain_type</span><span class="o">=</span><span class="s2">&quot;map_rerank&quot;</span><span class="p">,</span> <span class="n">return_intermediate_steps</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">PROMPT</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;What did the president say about Justice Breyer&quot;</span>
+<span class="n">chain</span><span class="p">({</span><span class="s2">&quot;input_documents&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">},</span> <span class="n">return_only_outputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;intermediate_steps&#39;: [{&#39;answer&#39;: &#39; Il presidente ha detto che Justice Breyer ha dedicato la sua vita a servire questo paese e ha onorato la sua carriera.&#39;,
+   &#39;score&#39;: &#39;100&#39;},
+  {&#39;answer&#39;: &#39; Il presidente non ha detto nulla sulla Giustizia Breyer.&#39;,
+   &#39;score&#39;: &#39;100&#39;},
+  {&#39;answer&#39;: &#39; Non so.&#39;, &#39;score&#39;: &#39;0&#39;},
+  {&#39;answer&#39;: &#39; Il presidente non ha detto nulla sulla giustizia Breyer.&#39;,
+   &#39;score&#39;: &#39;100&#39;}],
+ &#39;output_text&#39;: &#39; Il presidente ha detto che Justice Breyer ha dedicato la sua vita a servire questo paese e ha onorato la sua carriera.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="qa_with_sources.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Question Answering with Sources</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="summarize.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summarization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Harrison Chase<br/>
+  
+      &copy; Copyright 2022, Harrison Chase.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
