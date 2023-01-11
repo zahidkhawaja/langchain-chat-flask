@@ -5,3 +5,4 @@ openai
 black
 isort
 Flask
+transformers
