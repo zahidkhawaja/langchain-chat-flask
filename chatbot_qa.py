@@ -169,17 +169,15 @@ SOURCES: {sources}"""
         template=">Example:\nContent:\n---------\n{page_content}\n----------\nSource: {source}",
         input_variables=["page_content", "source"],
     )
-    template = """You are a friendly and helpful AI assistant for the open source library LangChain.
-Given the following extracted parts of a long document and a question, create a final answer in Markdown with helpful code snippets as code blocks.
-The reference should be a full URL using the base URL https://langchain.readthedocs.io/en/latest/ and the path to the source.
+    template = """You are an AI assistant for open source library LangChain. The documentation for LangChain is located at https://langchain.readthedocs.io/.
+Given the following extracted parts of a long document and a question, create a concise answer in Markdown with a link to the documentation.
 If you don't know the answer, just say "Hmm, I'm not sure." Don't try to make up an answer.
-If the question is not about LangChain, politely inform them that you are tuned to only answer questions about LangChain.
 
 Question: {question}
 =========
 {context}
 =========
-Final answer in Markdown:"""
+Answer:"""
     PROMPT = PromptTemplate(template=template, input_variables=["question", "context"])
     doc_chain = load_qa_chain(
         OpenAI(temperature=0, model_name="text-davinci-003", max_tokens=-1),
