@@ -1,4 +1,4 @@
-langchain
+git+https://github.com/agola11/langchain.git@ankush/base-tracing
 beautifulsoup4
 weaviate-client
 openai
